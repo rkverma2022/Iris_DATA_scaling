@@ -1,0 +1,27 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv('Iris.csv')
+# the csv file is containing
+print(df)
+features = []
+# noinspection PyRedeclaration
+features = df.keys()
+n = len(features)
+
+attribute = features[n - 1]
+
+df.pop(attribute)
+
+if "Id" not in features:
+    pass
+# we need not use id
+else:
+    df.pop("Id")
+# new csv file is
+df.to_csv('updated_data_file.csv', index=False)
+
+print("Done")
+
+plt.plot(df)
+plt.show()
