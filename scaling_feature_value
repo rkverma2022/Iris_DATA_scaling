@@ -1,0 +1,30 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv("updated_data_file.csv")
+print(df)
+
+# finding all the statistical parameter
+m = df.mean()  # mean = m
+X_max = df.max()
+X_min = df.min()
+
+print(f"THE MEAN\n{m}\nTHE MAX\n{X_max}\nTHE MIN\n{X_min}")
+# tHE KEYS
+key = df.keys()
+# scaling
+
+n = len(df[key[0]])
+print(n)
+
+for i in range(n):
+    for KEY in key:
+        df[KEY][i] = ((X_max[KEY]- df[KEY][i]) / (X_max[KEY] - X_min[KEY]))
+print(df)
+
+#scaled data
+df.to_csv("scaled_0_to_1.csv")
+
+plt.plot(df)
+plt.show()
+plt.title("SCALED IN BETWEEN 0 - 1")
